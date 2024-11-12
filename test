@@ -5,7 +5,7 @@ tags_list = [
     "Friendship", "Magic", "Supernatural", "Action", "Slice of Life"
 ]
 
-num_entries = 100  # Number of fanfic entries
+num_entries = 100
 data = []
 for _ in range(num_entries):
     num_tags = random.randint(1, 5)  # Random number of tags per fanfic
@@ -16,7 +16,7 @@ for _ in range(num_entries):
 
 df = pd.DataFrame(data)
 
-unwanted_tags = ["One-Shot", "AU"]  # Tags to exclude
+unwanted_tags = ["One-Shot", "AU"]
 min_support = 5
 min_occurrences = 10  
 output_df = process_fanfics(df, unwanted_tags, min_support, min_occurrences)
