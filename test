@@ -1,13 +1,25 @@
-file_path = 'fanfics.csv' #in my case, adjust according to your file path!
-df = pd.read_csv(file_path)
-min_support = 50 
-min_occurrences = 10
-unwanted_tags = [
-    "Min Yoongi | Suga", "Jeon Jungkook", "Jung Hoseok | J-Hope",
-    "Kim Namjoon | RM", "Kim Taehyung | V", "Kim Seokjin | Jin", 
-    "Park Jimin (BTS)", "No Archive Warnings Apply", "Kim Namjoon | Rap Monster", 
-    "Creator Chose Not To Use Archive Warnings"
+tags_list = [
+    "Romance", "Adventure", "Fantasy", "Sci-Fi", "Drama",
+    "Mystery", "Comedy", "Horror", "One-Shot", "Series",
+    "AU", "Fluff", "Angst", "Slow Burn", "Family",
+    "Friendship", "Magic", "Supernatural", "Action", "Slice of Life"
 ]
-process_fanfics(df, unwanted_tags, min_support, min_occurrences)
 
-#i use this on google colab and feel free to do so, since it has a lot of space to process the data; in my case, there are more than 140000 tags to be analysed and my laptop cant do it 
+num_entries = 100  # Number of fanfic entries
+data = []
+for _ in range(num_entries):
+    num_tags = random.randint(1, 5)  # Random number of tags per fanfic
+    tags = random.sample(tags_list, num_tags)
+    num_hits = random.randint(50, 500)  # Random popularity score
+
+    data.append({"tags": tags, "num_hits": num_hits})
+
+df = pd.DataFrame(data)
+
+unwanted_tags = ["One-Shot", "AU"]  # Tags to exclude
+min_support = 5
+min_occurrences = 10  
+output_df = process_fanfics(df, unwanted_tags, min_support, min_occurrences)
+print(output_df)
+
+#i use this on google colab with files in .csv; feel free to do so also, since it has a lot of space to process the data; in my case, there are more than 140000 tags to be analysed and my laptop cant do it 
